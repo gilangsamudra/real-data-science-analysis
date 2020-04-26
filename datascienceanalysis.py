@@ -66,4 +66,5 @@ ax2 = sales2.plot.bar(y='Sales', grid=False, rot=90, legend=False, ax=plt.gca())
 ax2.set_ylabel('Sales in USD $')
 ax2.grid(b=True, which='major', axis='y', ls='--', lw=.5, c='k', alpha=.3)
 
-
+# a techinque to extract values from a dataframe in similiar order as the original
+cities = [city for city, datafra in all_data.groupby('City')]
