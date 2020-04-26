@@ -68,3 +68,18 @@ ax2.grid(b=True, which='major', axis='y', ls='--', lw=.5, c='k', alpha=.3)
 
 # a techinque to extract values from a dataframe in similiar order as the original
 cities = [city for city, datafra in all_data.groupby('City')]
+
+
+# Parsing date
+all_data['Order Date'] = pd.to_datetime(all_data['Order Date'])
+all_data['Hour'] = all_data['Order Date'].dt.hour
+all_data['Minute'] = all_data['Order Date'].dt.minute
+
+hours = [hour for hour, datfra in all_data.groupby('Hour')]
+plt.figure(dpi=300)
+plt.plot(hours, all_data.groupby('Hour').count())
+plt.xlabel('Hour')
+plt.ylabel('# of Order')
+plt.xticks(hours)
+plt.grid(b=True, which='major', ls='--', lw=.5, c='k', alpha=.3)
+plt.title('Order count by hour')
