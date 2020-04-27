@@ -81,7 +81,7 @@ plt.figure(dpi=300)
 plt.plot(hours, all_data.groupby('Hour').count())
 plt.xlabel('Hour')
 plt.ylabel('# of Orders')
-plt.xticks(hours)
+plt.xticks(hours, rotation=90)
 plt.grid(b=True, which='major', ls='--', lw=.5, c='k', alpha=.3)
 plt.title('Order count by hour')
 
