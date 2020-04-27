@@ -98,3 +98,6 @@ for row in df['Grouped']:
 
 for key, value in count.most_common(10):
     print(key, value)
+
+# What product sold the most?
+product_group = all_data.groupby('Product')['Quantity Ordered'].sum()
