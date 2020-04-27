@@ -79,7 +79,7 @@ hours = [hour for hour, datfra in all_data.groupby('Hour')]
 plt.figure(dpi=300)
 plt.plot(hours, all_data.groupby('Hour').count())
 plt.xlabel('Hour')
-plt.ylabel('# of Order')
+plt.ylabel('# of Orders')
 plt.xticks(hours)
 plt.grid(b=True, which='major', ls='--', lw=.5, c='k', alpha=.3)
 plt.title('Order count by hour')
