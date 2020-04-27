@@ -2,7 +2,8 @@
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
-
+from itertools import combinations
+from collections import Counter
 
 def get_city(address):
     return address.split(',')[1]
@@ -83,3 +84,17 @@ plt.ylabel('# of Orders')
 plt.xticks(hours)
 plt.grid(b=True, which='major', ls='--', lw=.5, c='k', alpha=.3)
 plt.title('Order count by hour')
+
+# What products are most often sold together?
+df = all_data[all_data['Order ID'].duplicated(keep=False)]
+df['Grouped'] = df.groupby('Order ID')['Product'].transform(lambda x: ','.join(x))
+df = df[['Order ID', 'Grouped']].drop_duplicates()
+
+# Counting combination
+count = Counter()
+for row in df['Grouped']:
+    row_list = row.split(',')
+    count.update(Counter(combinations(row_list,2)))
+
+for key, value in count.most_common(10):
+    print(key, value)
